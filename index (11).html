@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>$AUTOMATION — invest in the future</title>
+<meta name="description" content="AUTOMATION — one word for AI and Robotics. The pump.fun memecoin for the inevitable future Elon Musk is betting everything on." />
+
+<!-- Fonts: Orbitron (display) + Rajdhani (body) — futuristic + clean -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-deep: #04060c;
+    --bg-panel: rgba(8, 12, 22, 0.72);
+    --bg-panel-2: rgba(12, 18, 32, 0.55);
+    --cyan: #00f0ff;
+    --cyan-soft: #6cf3ff;
+    --red: #ff3a4c;
+    --line: rgba(0, 240, 255, 0.18);
+    --line-strong: rgba(0, 240, 255, 0.45);
+    --text: #e9f4ff;
+    --text-dim: #9bb1c5;
+    --display: "Orbitron", "Arial Black", sans-serif;
+    --body: "Rajdhani", "Helvetica Neue", sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--body);
+    background: var(--bg-deep);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.55;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  /* Hero background — the futuristic city */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    background-image:
+      linear-gradient(180deg, rgba(4,6,12,0.35) 0%, rgba(4,6,12,0.65) 60%, rgba(4,6,12,1) 100%),
+      url('city-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Subtle scanline overlay for that retro-futurist screen feel */
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 240, 255, 0.025) 0px,
+      rgba(0, 240, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  /* Top nav */
+  .nav {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 36px;
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(6px);
+    background: rgba(4, 6, 12, 0.35);
+  }
+
+  .nav-brand {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: 0.32em;
+    color: var(--cyan);
+    text-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+  }
+
+  .nav-brand .dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 0 10px var(--red);
+    vertical-align: middle;
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.85); }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .btn {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text);
+    padding: 11px 20px;
+    border: 1px solid var(--line-strong);
+    background: rgba(0, 240, 255, 0.04);
+    transition: all 0.25s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn:hover {
+    background: rgba(0, 240, 255, 0.12);
+    border-color: var(--cyan);
+    box-shadow: 0 0 22px rgba(0, 240, 255, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary {
+    background: var(--cyan);
+    color: #04060c;
+    border-color: var(--cyan);
+  }
+  .btn-primary:hover {
+    background: var(--cyan-soft);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.7);
+  }
+
+  /* Hero content */
+  .hero-inner {
+    position: relative;
+    z-index: 4;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px 60px;
+  }
+
+  .tagline-top {
+    font-family: var(--display);
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    color: var(--cyan-soft);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0.8;
+  }
+
+  h1.title {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(56px, 12vw, 180px);
+    letter-spacing: 0.08em;
+    line-height: 0.95;
+    margin: 0;
+    background: linear-gradient(180deg, #ffffff 0%, #c4ecff 50%, #00f0ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 28px rgba(0, 240, 255, 0.45));
+  }
+
+  .subtitle {
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: clamp(20px, 2.4vw, 30px);
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    margin-top: 18px;
+    color: var(--text);
+    opacity: 0.92;
+  }
+
+  .subtitle em {
+    font-style: normal;
+    color: var(--cyan);
+    font-weight: 600;
+  }
+
+  .ticker {
+    margin-top: 36px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 22px;
+    border: 1px solid var(--line-strong);
+    background: rgba(4, 6, 12, 0.5);
+    backdrop-filter: blur(8px);
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: 0.28em;
+  }
+  .ticker .live {
+    width: 8px; height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ff88;
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+
+  /* Robot section — sits below the hero, framed */
+  .robot-section {
+    position: relative;
+    background: var(--bg-deep);
+    padding: 80px 24px 60px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+  }
+
+  .robot-frame {
+    position: relative;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 14px;
+    border: 1px solid var(--line-strong);
+    background: rgba(0, 240, 255, 0.03);
+    box-shadow:
+      0 0 60px rgba(0, 240, 255, 0.18),
+      inset 0 0 30px rgba(0, 240, 255, 0.05);
+  }
+
+  .robot-frame::before,
+  .robot-frame::after {
+    content: "";
+    position: absolute;
+    width: 26px; height: 26px;
+    border: 2px solid var(--cyan);
+  }
+  .robot-frame::before {
+    top: -2px; left: -2px;
+    border-right: none; border-bottom: none;
+  }
+  .robot-frame::after {
+    bottom: -2px; right: -2px;
+    border-left: none; border-top: none;
+  }
+
+  .robot-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .robot-caption {
+    margin-top: 28px;
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    color: var(--cyan-soft);
+    text-transform: uppercase;
+  }
+
+  /* Content sections */
+  main {
+    background: var(--bg-deep);
+    position: relative;
+  }
+
+  /* Faint grid pattern in the body */
+  main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .section {
+    position: relative;
+    z-index: 2;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 80px 28px;
+  }
+
+  .eyebrow {
+    font-family: var(--display);
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px; height: 1px;
+    background: var(--cyan);
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 44px);
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+    margin-bottom: 28px;
+    color: #fff;
+  }
+
+  h2 .accent { color: var(--cyan); }
+
+  .section p {
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 22px;
+    font-weight: 400;
+  }
+
+  .section p .highlight {
+    color: var(--cyan);
+    font-weight: 600;
+  }
+
+  a.inline-link {
+    color: var(--cyan);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.35);
+    transition: all 0.2s;
+    padding-bottom: 1px;
+  }
+  a.inline-link:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+  }
+
+  /* Quote-style callout for big Elon claims */
+  .callout {
+    border-left: 2px solid var(--cyan);
+    padding: 20px 26px;
+    margin: 30px 0;
+    background: var(--bg-panel-2);
+    font-family: var(--body);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .callout .src {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--display);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  /* Sources panel */
+  .sources {
+    margin-top: 24px;
+    padding: 26px 28px;
+    border: 1px solid var(--line);
+    background: var(--bg-panel);
+  }
+  .sources-title {
+    font-family: var(--display);
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    color: var(--cyan-soft);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .sources ul {
+    list-style: none;
+  }
+  .sources li {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--line);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .sources li:last-child { border-bottom: none; }
+  .sources li .num {
+    font-family: var(--display);
+    color: var(--red);
+    font-size: 11px;
+    min-width: 28px;
+  }
+  .sources li a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 16px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .sources li a:hover {
+    color: var(--cyan);
+    border-bottom-color: var(--cyan);
+  }
+
+  /* CTA / coin section */
+  .cta-section {
+    background: linear-gradient(180deg, var(--bg-deep) 0%, #0a1426 100%);
+    padding: 100px 28px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cta-title {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(36px, 6vw, 64px);
+    letter-spacing: 0.06em;
+    margin-bottom: 18px;
+  }
+  .cta-title .accent {
+    background: linear-gradient(180deg, #fff 0%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .cta-sub {
+    font-size: 20px;
+    color: var(--text-dim);
+    max-width: 600px;
+    margin: 0 auto 36px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .ca-box {
+    margin-top: 36px;
+    display: inline-block;
+    padding: 14px 22px;
+    border: 1px dashed var(--line-strong);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    background: rgba(0, 0, 0, 0.4);
+    letter-spacing: 0.05em;
+  }
+  .ca-box span { color: var(--cyan); }
+
+  /* Audio control floating */
+  .audio-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 100;
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    background: rgba(4, 6, 12, 0.85);
+    color: var(--cyan);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+  }
+  .audio-toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+  }
+  .audio-toggle svg { width: 22px; height: 22px; }
+
+  /* Footer */
+  footer {
+    background: #02030a;
+    padding: 50px 28px 30px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+  }
+  footer .brand-mini {
+    font-family: var(--display);
+    font-size: 14px;
+    letter-spacing: 0.4em;
+    color: var(--cyan);
+    margin-bottom: 14px;
+  }
+  footer p {
+    color: var(--text-dim);
+    font-size: 14px;
+    max-width: 600px;
+    margin: 0 auto 8px;
+  }
+  footer .disclaimer {
+    margin-top: 24px;
+    font-size: 12px;
+    color: #4a5b70;
+    letter-spacing: 0.05em;
+  }
+
+  /* Reveal animation for sections */
+  .section, .robot-section, .cta-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .section.in, .robot-section.in, .cta-section.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hero entrance */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .tagline-top { animation: fadeUp 0.9s ease 0.1s both; }
+  h1.title     { animation: fadeUp 1.1s ease 0.25s both; }
+  .subtitle    { animation: fadeUp 1.0s ease 0.5s both; }
+  .ticker      { animation: fadeUp 0.9s ease 0.75s both; }
+
+  @media (max-width: 640px) {
+    .nav { padding: 16px 18px; flex-direction: column; gap: 14px; }
+    .nav-links { flex-wrap: wrap; justify-content: center; }
+    .btn { font-size: 11px; padding: 9px 14px; letter-spacing: 0.18em; }
+    .section { padding: 60px 22px; }
+    .robot-section { padding: 60px 22px 40px; }
+    .audio-toggle { bottom: 16px; right: 16px; width: 48px; height: 48px; }
+    body { font-size: 16px; }
+    .section p { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Background music. Replace src below with your MP3 filename (place it next to index.html). -->
+<audio id="bgAudio" loop preload="auto">
+  <source src="audio.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Floating audio toggle (browsers block autoplay-with-sound; we queue it on first interaction) -->
+<button class="audio-toggle" id="audioToggle" aria-label="Toggle music" title="Toggle music">
+  <svg id="iconMute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+    <line x1="23" y1="9" x2="17" y2="15"/>
+    <line x1="17" y1="9" x2="23" y2="15"/>
+  </svg>
+  <svg id="iconPlay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+  </svg>
+</button>
+
+<!-- HERO -->
+<section class="hero">
+  <nav class="nav">
+    <div class="nav-brand"><span class="dot"></span>$AUTOMATION</div>
+    <div class="nav-links">
+      <a class="btn" href="#thesis">Thesis</a>
+      <a class="btn" href="#elon">Elon's bet</a>
+      <a class="btn" href="#coin">The coin</a>
+      <a class="btn" href="https://x.com/" target="_blank" rel="noopener" id="xBtn">𝕏 / Twitter</a>
+      <a class="btn btn-primary" href="https://pump.fun" target="_blank" rel="noopener">Buy on pump.fun</a>
+    </div>
+  </nav>
+
+  <div class="hero-inner">
+    <div class="tagline-top">// AI &nbsp;+&nbsp; ROBOTICS &nbsp;=&nbsp; ONE WORD</div>
+    <h1 class="title">AUTOMATION</h1>
+    <div class="subtitle"><em>invest</em> in the future</div>
+    <div class="ticker">
+      <span class="live"></span>
+      <span>LIVE ON PUMP.FUN</span>
+    </div>
+  </div>
+</section>
+
+<!-- ROBOT IMAGE BLOCK -->
+<section class="robot-section">
+  <div class="robot-frame">
+    <img src="robot.png" alt="Automation memecoin mascot — a futuristic robot with deal-with-it shades" />
+  </div>
+  <div class="robot-caption">// SUBJECT 001 &nbsp;//&nbsp; STATUS: DEAL WITH IT</div>
+</section>
+
+<!-- THESIS -->
+<main>
+  <section class="section" id="thesis">
+    <div class="eyebrow">The thesis</div>
+    <h2>One word for AI <span class="accent">+</span> robotics. <br/>That word is <span class="accent">automation</span>.</h2>
+
+    <p>Everyone keeps saying "AI and robotics" like they're two different bets. They're not. Software that thinks plus hardware that moves is a single thing — <span class="highlight">automation</span> — and it's about to eat every line of every economy on Earth.</p>
+
+    <p>The wild part? Tesla already says this out loud. Their official AI page is literally titled around one mission: to <a class="inline-link" href="https://www.tesla.com/AI#:~:text=develop%20and%20deploy-,autonomy,-at%20scale%20in" target="_blank" rel="noopener">"develop and deploy <strong>autonomy</strong> at scale"</a>. Self-driving cars. Optimus humanoids. Same word. Same bet. AI fused with robotics. And there is <span class="highlight">no coin for it yet.</span> So we made one.</p>
+  </section>
+
+  <!-- ELON -->
+  <section class="section" id="elon">
+    <div class="eyebrow">Elon's bet</div>
+    <h2>The richest man on Earth keeps saying the same thing. <br/><span class="accent">Loudly.</span></h2>
+
+    <p>Start here — this is the talk that crystallized the whole thesis. Elon walks through why automation isn't a sector, it's <em>the</em> sector: <a class="inline-link" href="https://www.youtube.com/watch?v=Txt3Wodav1o&t=1541s" target="_blank" rel="noopener">watch the clip</a>. Then it gets sharper.</p>
+
+    <div class="callout">
+      Elon Musk says AI and robots are <strong>the only way to stop America from going bankrupt.</strong>
+      <span class="src">// Source: <a class="inline-link" href="https://x.com/elonmusk/status/1991238829198713072" target="_blank" rel="noopener">@elonmusk on X</a> &nbsp;·&nbsp; <a class="inline-link" href="https://startupfortune.com/elon-musk-says-ai-and-robots-are-the-only-way-to-stop-america-going-bankrupt/" target="_blank" rel="noopener">Startup Fortune coverage</a></span>
+    </div>
+
+    <p>Read that again. Not "a way." <span class="highlight">The only way.</span> The most-followed CEO on the planet is publicly arguing that automation isn't optional — it's the macro escape hatch for a country drowning in entitlements and debt. He extends the same argument to retirement: <a class="inline-link" href="https://finance.yahoo.com/sectors/technology/articles/elon-musk-says-saving-retirement-174705539.html" target="_blank" rel="noopener">AI and robotics will create abundance</a> at a scale that fixes the math.</p>
+
+    <div class="callout">
+      And then this: <a class="inline-link" href="https://x.com/elonmusk/status/2045589182308040856?s=20" target="_blank" rel="noopener">"Everyone can have a penthouse."</a>
+      <span class="src">// Source: @elonmusk on X</span>
+    </div>
+
+    <p>That's not a flex — it's the punchline of the whole worldview. When automation gets cheap enough, scarcity collapses. Housing, transport, healthcare, food — the cost curves all bend toward zero. He's been hammering this for months: <a class="inline-link" href="https://x.com/elonmusk/status/2044990537145753894?s=20" target="_blank" rel="noopener">see also this thread</a>.</p>
+
+    <p>This is where <span class="highlight">UHI — Universal High Income</span> — comes in. Forget UBI (a small monthly check that keeps you alive). UHI is the post-scarcity version: when robots and AI are doing the actual labor, the productivity surplus floods every household. Elon thinks automation is the <em>prime cause</em> of UHI. Not a side effect. The cause.</p>
+
+    <div class="sources">
+      <div class="sources-title">// Receipts &nbsp;//&nbsp; read them yourself</div>
+      <ul>
+        <li><span class="num">01</span> <a href="https://www.youtube.com/watch?v=Txt3Wodav1o&t=1541s" target="_blank" rel="noopener">YouTube — Elon on the automation thesis (timestamped)</a></li>
+        <li><span class="num">02</span> <a href="https://x.com/elonmusk/status/1991238829198713072" target="_blank" rel="noopener">@elonmusk — only way to stop America from going bankrupt</a></li>
+        <li><span class="num">03</span> <a href="https://startupfortune.com/elon-musk-says-ai-and-robots-are-the-only-way-to-stop-america-going-bankrupt/" target="_blank" rel="noopener">Startup Fortune — full article</a></li>
+        <li><span class="num">04</span> <a href="https://finance.yahoo.com/sectors/technology/articles/elon-musk-says-saving-retirement-174705539.html" target="_blank" rel="noopener">Yahoo Finance — AI &amp; robotics will create abundance</a></li>
+        <li><span class="num">05</span> <a href="https://www.tesla.com/AI#:~:text=develop%20and%20deploy-,autonomy,-at%20scale%20in" target="_blank" rel="noopener">tesla.com/AI — "deploy autonomy at scale"</a></li>
+        <li><span class="num">06</span> <a href="https://x.com/elonmusk/status/2044990537145753894?s=20" target="_blank" rel="noopener">@elonmusk — automation thread</a></li>
+        <li><span class="num">07</span> <a href="https://x.com/elonmusk/status/2045589182308040856?s=20" target="_blank" rel="noopener">@elonmusk — "everyone can have a penthouse"</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHY A MEMECOIN -->
+  <section class="section">
+    <div class="eyebrow">Why a memecoin</div>
+    <h2>Tesla calls it autonomy. We call it <span class="accent">$AUTOMATION</span>.</h2>
+
+    <p>Pump.fun memecoins are bets on narratives, not white papers. The narrative here is the most-priced-in trend of the next decade — fusing AI with robotics — and somehow no one had stamped a name on the coin yet. Now someone has.</p>
+
+    <p>This isn't a utility token. There's no roadmap with a Q3 2027 mainnet. It's a <span class="highlight">cultural ticker</span> — a way to bet on the word itself. If Elon's right and automation eats the world, the word that describes it becomes one of the most valuable memes of the cycle. We just put it on-chain first.</p>
+
+    <p>No promises. No dev wallets pretending to be roadmaps. Just the coin, the meme, and the receipts above. <span class="highlight">Deal with it.</span></p>
+  </section>
+</main>
+
+<!-- CTA -->
+<section class="cta-section" id="coin">
+  <div class="cta-title">The future is <span class="accent">automated.</span></div>
+  <p class="cta-sub">Bet on the word before everyone else figures out it's the only word that matters.</p>
+  <div class="cta-buttons">
+    <a class="btn btn-primary" href="https://pump.fun" target="_blank" rel="noopener">Buy on pump.fun →</a>
+    <a class="btn" href="https://x.com/" target="_blank" rel="noopener">Follow on 𝕏</a>
+    <a class="btn" href="https://www.youtube.com/watch?v=Txt3Wodav1o&t=1541s" target="_blank" rel="noopener">Watch the thesis</a>
+  </div>
+  <div class="ca-box">CA: <span>paste-contract-address-here</span></div>
+</section>
+
+<footer>
+  <div class="brand-mini">$AUTOMATION</div>
+  <p>One word for AI and robotics. The pump.fun memecoin for the inevitable.</p>
+  <p class="disclaimer">$AUTOMATION is a memecoin with no intrinsic value or expectation of financial return. Nothing on this page is financial advice. Crypto is risky. DYOR.</p>
+</footer>
+
+<script>
+  // ====== AUDIO QUEUE ======
+  // Browsers block autoplay-with-sound. We start playback on the first user interaction
+  // (any click or key press), which is the standard pattern for "queue music on the site."
+  const audio = document.getElementById('bgAudio');
+  const toggle = document.getElementById('audioToggle');
+  const iconPlay = document.getElementById('iconPlay');
+  const iconMute = document.getElementById('iconMute');
+  let started = false;
+  let userMuted = false;
+
+  function setIcon(playing) {
+    iconPlay.style.display = playing ? 'block' : 'none';
+    iconMute.style.display = playing ? 'none' : 'block';
+  }
+
+  function tryStart() {
+    if (started || userMuted) return;
+    audio.volume = 0.45;
+    const p = audio.play();
+    if (p && p.then) {
+      p.then(() => { started = true; setIcon(true); }).catch(() => { /* user will need to click */ });
+    } else {
+      started = true; setIcon(true);
+    }
+  }
+
+  // Queue on first interaction anywhere on the page
+  ['click', 'keydown', 'touchstart'].forEach(evt =>
+    window.addEventListener(evt, tryStart, { once: false })
+  );
+
+  // Manual toggle
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (audio.paused) {
+      userMuted = false;
+      audio.play().then(() => { started = true; setIcon(true); }).catch(()=>{});
+    } else {
+      audio.pause();
+      userMuted = true;
+      setIcon(false);
+    }
+  });
+
+  // ====== SCROLL REVEAL ======
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.section, .robot-section, .cta-section').forEach(el => io.observe(el));
+
+  // ====== X LINK PLACEHOLDER ======
+  // Replace the href below with your X handle URL (e.g. https://x.com/your_handle)
+  // and it will update both the nav button and the CTA button automatically.
+  const X_HANDLE_URL = "https://x.com/"; // <-- PUT YOUR X ACCOUNT HERE
+  document.querySelectorAll('a[href="https://x.com/"]').forEach(a => a.href = X_HANDLE_URL);
+</script>
+
+</body>
+</html>
