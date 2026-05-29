@@ -97,14 +97,52 @@
   aside { padding: 56px 0 80px; }
   .sticky { position: sticky; top: 98px; }
   .ad-slot {
-    background: var(--white); border: 1px solid var(--black);
-    text-align: center; color: var(--grey); font-size: 0.7rem;
-    text-transform: uppercase; letter-spacing: 0.14em;
+    border: 1px solid var(--black); overflow: hidden;
     display: grid; place-items: center; margin-bottom: 28px;
+    position: relative; text-align: center;
   }
-  .ad-label { font-size: 0.6rem; color: #999; letter-spacing: 0.2em; margin-bottom: 6px; display: block; }
   .ad-300 { height: 250px; }
   .ad-sky { height: 600px; }
+
+  /* Fictional brand: NORTHWIND */
+  .ad-northwind {
+    background: radial-gradient(circle at 30% 20%, #2b4cff 0%, #0b1d8c 55%, #050a3a 100%);
+    color: #fff; padding: 28px 22px;
+  }
+  .ad-northwind .logo {
+    font-family: 'Newsreader', serif; font-weight: 700; font-size: 1.5rem;
+    letter-spacing: 0.04em; margin-bottom: 14px;
+  }
+  .ad-northwind .logo::before { content: "◇ "; color: #8fa6ff; }
+  .ad-northwind h4 { font-size: 1.15rem; line-height: 1.25; margin-bottom: 10px; font-weight: 600; }
+  .ad-northwind p { font-size: 0.82rem; opacity: 0.85; margin-bottom: 18px; }
+  .ad-northwind .cta {
+    display: inline-block; background: #fff; color: #0b1d8c; font-weight: 600;
+    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 9px 18px; border-radius: 2px; text-decoration: none;
+  }
+
+  /* Fictional brand: HEARTHFOLD */
+  .ad-hearthfold {
+    background: linear-gradient(160deg, #ff7a18 0%, #d4451c 100%);
+    color: #fff; padding: 30px 22px; height: 100%; width: 100%;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .ad-hearthfold .logo {
+    font-family: 'Newsreader', serif; font-style: italic; font-weight: 600;
+    font-size: 1.6rem; margin-bottom: 20px;
+  }
+  .ad-hearthfold .big { font-size: 2.6rem; font-weight: 700; line-height: 1; font-family: 'Newsreader', serif; }
+  .ad-hearthfold .sub { font-size: 0.95rem; margin: 10px 0 22px; opacity: 0.9; }
+  .ad-hearthfold .cta {
+    display: inline-block; border: 2px solid #fff; color: #fff; font-weight: 600;
+    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 10px 16px; text-decoration: none; align-self: center;
+  }
+  .ad-hearthfold .deco {
+    position: absolute; bottom: -30px; right: -30px; width: 130px; height: 130px;
+    border: 18px solid rgba(255,255,255,0.18); border-radius: 50%;
+  }
   .related h3 {
     font-family: 'Newsreader', serif; font-size: 1rem; text-transform: uppercase;
     letter-spacing: 0.08em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--black);
@@ -116,10 +154,23 @@
   }
   .related a:hover { opacity: 0.5; }
   .ad-inline {
-    background: var(--white); border: 1px solid var(--black); height: 120px;
-    display: grid; place-items: center; margin: 40px 0; color: var(--grey);
-    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em;
+    height: 130px; margin: 40px 0; overflow: hidden; position: relative;
+    background: #111; color: #fff; display: flex; align-items: center;
+    justify-content: space-between; padding: 0 32px;
   }
+  .ad-inline .lockwood-logo {
+    font-family: 'Newsreader', serif; font-weight: 700; font-size: 1.5rem; letter-spacing: 0.02em;
+  }
+  .ad-inline .lockwood-msg { font-size: 0.95rem; opacity: 0.85; max-width: 320px; }
+  .ad-inline .cta {
+    background: #c9a24b; color: #111; font-weight: 600; font-size: 0.78rem;
+    text-transform: uppercase; letter-spacing: 0.08em; padding: 10px 18px;
+    text-decoration: none; white-space: nowrap;
+  }
+  .ad-inline .stripe {
+    position: absolute; top: 0; left: 0; height: 100%; width: 6px; background: #c9a24b;
+  }
+  @media (max-width: 540px) { .ad-inline .lockwood-msg { display: none; } }
   footer.site {
     border-top: 2px solid var(--black); background: var(--white);
     padding: 40px 24px; text-align: center; color: var(--grey); font-size: 0.8rem;
@@ -160,7 +211,12 @@
       <p>A Saturday job used to be a rite of passage. We stacked shelves, waited tables, delivered newspapers, cleaned floors and endured difficult managers. It was badly paid, often boring, and occasionally humiliating. Yet it provided something increasingly rare today: our own money, a degree of independence, and the knowledge that effort could lead to opportunities. It was also responsible for the revelation that school was only one measure of ability, and that those who struggled academically could still thrive in the workplace.</p>
       <p>These modest jobs once served as training grounds for adulthood. In their place, young people are now offered an endless succession of training schemes, employability programs and "pathways into the workplace" rather than proper jobs. Endless preparation is boring and school refusal is on the rise as disaffected kids opt out and become NEETs.</p>
 
-      <div class="ad-inline"><div><span class="ad-label">Advertisement</span>Sponsored content placeholder</div></div>
+      <div class="ad-inline">
+        <span class="stripe"></span>
+        <span class="lockwood-logo">LOCKWOOD &amp; CRANE</span>
+        <span class="lockwood-msg">Handbound notebooks for people who still write things down.</span>
+        <a href="#" class="cta">Shop the range</a>
+      </div>
 
       <p>There is another important factor here. The Milburn review notes that "one in five (20.0%) of all NEET young people report a mental health condition, more than double the share in 2012, when it stood at 7.7%." Young people have been taught to seek accommodations and allowances whenever they encounter difficulties. They have learned to tend to their feelings like a gardener tending a bonsai tree, carefully nurturing and shaping them. As a psychotherapist, I believe in the value of talk therapy in the appropriate context. Yet the mental health industry has helped create a generation that believes feelings should be the chief guide to making decisions. This is not only untrue but dangerous.</p>
 
@@ -176,7 +232,14 @@
 
   <aside>
     <div class="sticky">
-      <div class="ad-slot ad-300"><div><span class="ad-label">Advertisement</span>300 × 250</div></div>
+      <div class="ad-slot ad-300">
+        <div class="ad-northwind">
+          <div class="logo">Northwind</div>
+          <h4>Your savings, finally moving in the right direction.</h4>
+          <p>Open a Northwind account in minutes. No fees, no fuss.</p>
+          <a href="#" class="cta">Get started</a>
+        </div>
+      </div>
       <div class="related">
         <h3>More from Ideas</h3>
         <a href="#">Why the office is making a quiet comeback</a>
@@ -184,7 +247,15 @@
         <a href="#">What we lost when work stopped being local</a>
         <a href="#">The new economics of staying home</a>
       </div>
-      <div class="ad-slot ad-sky" style="margin-top:28px;"><div><span class="ad-label">Advertisement</span>160 × 600</div></div>
+      <div class="ad-slot ad-sky" style="margin-top:28px;">
+        <div class="ad-hearthfold">
+          <div class="logo">Hearthfold</div>
+          <div class="big">40%</div>
+          <div class="sub">off everything for the home, this week only.</div>
+          <a href="#" class="cta">Browse the sale</a>
+          <span class="deco"></span>
+        </div>
+      </div>
     </div>
   </aside>
 </div>
